@@ -6,10 +6,11 @@ from byotest import *
  
 # 200, 100, 50, 20, 10, 5, 2, and 1.
 
-coins = [200, 100, 50, 20, 10, 5, 2, 1]
+eur_coins = [200, 100, 50, 20, 10, 5, 2, 1]
+us_coins = [200, 100, 50, 25, 10, 5, 2, 1]
+gbp = [200, 100, 50, 20, 10, 5]
 
-
-def make_change(amount):
+def make_change(amount, coins = eur_coins):
     change = []
     for coin in coins:
         # if coin > amount:
@@ -21,9 +22,13 @@ def make_change(amount):
     return change
     
     
-assert_equal(make_change(0), []) 
+assert_equal(make_change(0), [])
+assert_equal(make_change(50), [50]) 
 assert_equal(make_change(13), [10, 2, 1])
 assert_equal(make_change(1000), [200, 200, 200, 200, 200])
+
+assert_equal(make_change(59, us_coins), [50, 5, 2, 2])
+
 
 
 print("All tests pass")
